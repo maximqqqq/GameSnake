@@ -72,10 +72,12 @@ public class GameField extends JPanel implements ActionListener {
             }
         }else {//Если в не игре(ОТРИСОВКА ЕСЛИ СОСТОЯНИЕ В НЕ ИГРЕ)
             String str = "YOU DIED";
+            String str1 = String.valueOf(dots-3);
 //            Font f = new Font("Arial",20,Font.BOLD);
             g.setColor(Color.red);
 //            g.setFont(f);
             g.drawString(str,125,SIZE/2);
+            g.drawString(str1 + " Apples",125,100);
         }
     }
 
@@ -96,10 +98,6 @@ public class GameField extends JPanel implements ActionListener {
         if (down) {
             y[0] += DOT_SIZE;
         }
-
-        if (y[0] < 0) {//роверка выхода за игровое поле
-            inGame = false;
-        }
     }
 
     public void cheackApple() {
@@ -115,7 +113,7 @@ public class GameField extends JPanel implements ActionListener {
                 inGame = false;
             }
 
-            if (x[0] >= SIZE) {//роверка выхода за игровое поле
+            if (x[0] > SIZE) {//роверка выхода за игровое поле
                 inGame = false;
             }
 
@@ -124,6 +122,9 @@ public class GameField extends JPanel implements ActionListener {
             }
 
             if (y[0] > SIZE) {//роверка выхода за игровое поле
+                inGame = false;
+            }
+            if (y[0] < 0) {//роверка выхода за игровое поле
                 inGame = false;
             }
         }
