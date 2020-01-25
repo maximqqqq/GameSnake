@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +9,7 @@ import java.util.Random;
 
 public class GameField extends JPanel implements ActionListener {
     //Игровое поле
-    private final int SIZE = 320;//Размер поля в пикселях
+    private final int SIZE = 300;//Размер поля в пикселях
     private final int DOT_SIZE = 16;// Размер в пикселях, 1на секция змейки
     private final int ALL_DOTS = 400;//Размер доступен для игровых едениц на поле
     private Image dot;//Под игровую ячейку
@@ -27,6 +28,7 @@ public class GameField extends JPanel implements ActionListener {
 
     public GameField() {
         setBackground(Color.BLACK);
+//        setBorder(new LineBorder(Color.WHITE,10));
         loadImage();
         initGame();
         addKeyListener(new FieldKeyListener());//Оброботчик событий
@@ -47,8 +49,8 @@ public class GameField extends JPanel implements ActionListener {
     }
 
     public void createApple() {
-        appleX = new Random().nextInt(20) * DOT_SIZE;//20 16ти пиксельных квадратиков может поместится на поле
-        appleY = new Random().nextInt(20) * DOT_SIZE;
+        appleX = new Random().nextInt(19) * DOT_SIZE;//20 16ти пиксельных квадратиков может поместится на поле
+        appleY = new Random().nextInt(19) * DOT_SIZE;
     }
 
     public void loadImage() {
@@ -113,11 +115,11 @@ public class GameField extends JPanel implements ActionListener {
                 inGame = false;
             }
 
-            if (x[0] > SIZE) {//роверка выхода за игровое поле
+            if (x[0] >= SIZE) {//роверка выхода за игровое поле
                 inGame = false;
             }
 
-            if (x[0] < 0) {//роверка выхода за игровое поле
+            if (x[0] <= 0) {//роверка выхода за игровое поле
                 inGame = false;
             }
 
